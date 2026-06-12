@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContentService } from '../../core/services/content.service';
 
 /** Replace with your Formspree endpoint when ready, e.g. https://formspree.io/f/xxxxxxxx */
-export const FORMSPREE_ENDPOINT = '';
+export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xkoaqvln';
 
 @Component({
   selector: 'app-contact-form',
