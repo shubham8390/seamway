@@ -32,11 +32,6 @@
               },
               {
                 "glob": "**/*",
-                "input": "../Images",
-                "output": "/images/logos"
-              },
-              {
-                "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
               }
@@ -98,11 +93,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*",
-                "input": "../Images",
-                "output": "/images/logos"
               },
               {
                 "glob": "**/*",
