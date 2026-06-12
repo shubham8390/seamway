@@ -1,0 +1,26 @@
+<div
+  appScrollAnimate
+  [delay]="index * 80"
+  class="group h-full p-6 sm:p-8 rounded-2xl bg-white dark:bg-navy-800 border border-navy-100 dark:border-navy-700
+    shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+>
+  <div class="w-14 h-14 mb-5 rounded-full bg-navy-900 dark:bg-brand-orange/20 flex items-center justify-center
+    group-hover:bg-brand-orange transition-colors duration-300">
+    <svg class="w-7 h-7 text-brand-orange group-hover:text-white transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+    </svg>
+  </div>
+
+  <h3 class="font-heading font-bold text-lg uppercase text-navy-900 dark:text-white mb-4">
+    {{ service.title }}
+  </h3>
+
+  <ul class="space-y-2">
+    @for (item of service.items; track item) {
+      <li class="flex items-start gap-2 text-sm text-navy-400 dark:text-gray-300">
+        <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-orange flex-shrink-0"></span>
+        {{ item }}
+      </li>
+    }
+  </ul>
+</div>

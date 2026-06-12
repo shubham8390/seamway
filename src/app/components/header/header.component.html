@@ -1,0 +1,83 @@
+<header
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  [ngClass]="{
+    'bg-white/95 dark:bg-navy-900/95 shadow-md backdrop-blur-md': scrolled() || mobileMenuOpen(),
+    'bg-transparent': !scrolled() && !mobileMenuOpen()
+  }"
+>
+  <div class="container-max">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <a href="#home" (click)="navigateTo('home'); $event.preventDefault()" class="flex-shrink-0">
+        <img
+          [src]="themeService.wideLogo()"
+          alt="Seamway Logistics Services"
+          class="hidden lg:block h-10 xl:h-12 w-auto"
+        />
+        <img
+          [src]="themeService.squareLogo()"
+          alt="Seamway Logistics Services"
+          class="lg:hidden h-10 w-auto"
+        />
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+        @for (link of content.navLinks; track link.fragment) {
+          <a
+            [href]="'#' + link.fragment"
+            (click)="navigateTo(link.fragment); $event.preventDefault()"
+            class="px-3 xl:px-4 py-2 min-h-[44px] flex items-center text-sm font-medium uppercase tracking-wide rounded-lg transition-colors duration-200 hover:text-brand-orange"
+            [ngClass]="activeSection() === link.fragment
+              ? 'text-brand-orange'
+              : (scrolled() || mobileMenuOpen() ? 'text-navy-700 dark:text-gray-200' : 'text-white')"
+          >
+            {{ link.label }}
+          </a>
+        }
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <app-theme-toggle />
+        <button
+          type="button"
+          class="lg:hidden flex items-center justify-center min-w-[44px] min-h-[44px] rounded-lg transition-colors"
+          [ngClass]="(scrolled() || mobileMenuOpen()) ? 'text-navy-900 dark:text-white' : 'text-white'"
+          (click)="toggleMobileMenu()"
+          [attr.aria-expanded]="mobileMenuOpen()"
+          aria-label="Toggle navigation menu"
+        >
+          @if (mobileMenuOpen()) {
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          } @else {
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+
+  @if (mobileMenuOpen()) {
+    <nav
+      class="lg:hidden border-t border-navy-200 dark:border-navy-700 bg-white dark:bg-navy-900 animate-slide-down"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="container-max py-4 flex flex-col gap-1">
+        @for (link of content.navLinks; track link.fragment) {
+          <a
+            [href]="'#' + link.fragment"
+            (click)="navigateTo(link.fragment); $event.preventDefault()"
+            class="px-4 py-3 min-h-[44px] flex items-center text-sm font-semibold uppercase tracking-wide rounded-lg transition-colors"
+            [ngClass]="activeSection() === link.fragment
+              ? 'text-brand-orange bg-navy-50 dark:bg-navy-800'
+              : 'text-navy-900 dark:text-gray-100'"
+          >
+            {{ link.label }}
+          </a>
+        }
+      </div>
+    </nav>
+  }
+</header>

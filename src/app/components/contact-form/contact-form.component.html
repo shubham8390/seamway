@@ -1,0 +1,155 @@
+<div class="w-full">
+  @if (submitted()) {
+    <div class="rounded-2xl bg-navy-800 border border-brand-orange/30 p-8 sm:p-10 text-center">
+      <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-brand-orange/20 flex items-center justify-center">
+        <svg class="w-8 h-8 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+      <h3 class="font-heading font-bold text-xl uppercase text-white mb-2">Message Received</h3>
+      <p class="text-gray-300 text-sm sm:text-base mb-6 max-w-sm mx-auto">
+        Thank you for reaching out. Our team will get back to you shortly.
+      </p>
+      <button type="button" (click)="resetForm()" class="btn-primary">
+        Send Another Message
+      </button>
+    </div>
+  } @else {
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      class="rounded-2xl bg-navy-800 border border-navy-700 p-6 sm:p-8 space-y-5"
+      novalidate
+    >
+      <div class="mb-2">
+        <h3 class="font-heading font-bold text-lg uppercase text-white">Send Us a Message</h3>
+        <p class="text-gray-400 text-sm mt-1">Tell us about your logistics needs and we'll respond promptly.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label for="contact-name" class="block text-sm font-medium text-gray-300 mb-1.5">
+            Full Name <span class="text-brand-orange">*</span>
+          </label>
+          <input
+            id="contact-name"
+            type="text"
+            formControlName="name"
+            autocomplete="name"
+            placeholder="John Smith"
+            class="contact-input"
+            [class.contact-input-error]="isInvalid('name')"
+          />
+          @if (isInvalid('name')) {
+            <p class="contact-error">Please enter your name (at least 2 characters).</p>
+          }
+        </div>
+
+        <div>
+          <label for="contact-email" class="block text-sm font-medium text-gray-300 mb-1.5">
+            Email <span class="text-brand-orange">*</span>
+          </label>
+          <input
+            id="contact-email"
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            placeholder="you@company.com"
+            class="contact-input"
+            [class.contact-input-error]="isInvalid('email')"
+          />
+          @if (isInvalid('email')) {
+            <p class="contact-error">Please enter a valid email address.</p>
+          }
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label for="contact-phone" class="block text-sm font-medium text-gray-300 mb-1.5">Phone</label>
+          <input
+            id="contact-phone"
+            type="tel"
+            formControlName="phone"
+            autocomplete="tel"
+            placeholder="+91 98765 43210"
+            class="contact-input"
+            [class.contact-input-error]="isInvalid('phone')"
+          />
+          @if (isInvalid('phone')) {
+            <p class="contact-error">Please enter a valid phone number.</p>
+          }
+        </div>
+
+        <div>
+          <label for="contact-company" class="block text-sm font-medium text-gray-300 mb-1.5">Company</label>
+          <input
+            id="contact-company"
+            type="text"
+            formControlName="company"
+            autocomplete="organization"
+            placeholder="Your company name"
+            class="contact-input"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="contact-service" class="block text-sm font-medium text-gray-300 mb-1.5">
+          Service Interest <span class="text-brand-orange">*</span>
+        </label>
+        <select
+          id="contact-service"
+          formControlName="service"
+          class="contact-input contact-select"
+          [class.contact-input-error]="isInvalid('service')"
+        >
+          <option value="" disabled>Select a service</option>
+          @for (option of serviceOptions; track option) {
+            <option [value]="option">{{ option }}</option>
+          }
+          <option value="General Inquiry">General Inquiry</option>
+        </select>
+        @if (isInvalid('service')) {
+          <p class="contact-error">Please select a service.</p>
+        }
+      </div>
+
+      <div>
+        <label for="contact-message" class="block text-sm font-medium text-gray-300 mb-1.5">
+          Message <span class="text-brand-orange">*</span>
+        </label>
+        <textarea
+          id="contact-message"
+          formControlName="message"
+          rows="5"
+          placeholder="Describe your shipment requirements, origin, destination, cargo type..."
+          class="contact-input resize-y min-h-[120px]"
+          [class.contact-input-error]="isInvalid('message')"
+        ></textarea>
+        @if (isInvalid('message')) {
+          <p class="contact-error">Please enter a message (at least 10 characters).</p>
+        }
+      </div>
+
+      <button
+        type="submit"
+        class="btn-primary w-full sm:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
+        [disabled]="submitting()"
+      >
+        @if (submitting()) {
+          <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"/>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+          </svg>
+          Sending...
+        } @else {
+          Send Message
+          <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        }
+      </button>
+    </form>
+  }
+</div>

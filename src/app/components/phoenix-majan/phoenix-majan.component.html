@@ -1,0 +1,29 @@
+<section class="section-padding bg-surface-light dark:bg-navy-800/50 transition-colors duration-200">
+  <div class="container-max">
+    <div
+      appScrollAnimate
+      class="max-w-4xl mx-auto p-6 sm:p-10 rounded-2xl bg-white dark:bg-navy-800 border border-navy-100 dark:border-navy-700 shadow-lg"
+    >
+      <div class="flex flex-col sm:flex-row sm:items-center gap-6 mb-6">
+        <div class="flex-shrink-0 w-20 h-20 rounded-xl bg-navy-900 flex items-center justify-center">
+          <span class="text-brand-orange font-heading font-extrabold text-2xl">PM</span>
+        </div>
+        <div>
+          <h3 class="font-heading font-bold text-xl sm:text-2xl uppercase text-navy-900 dark:text-white">
+            {{ content.phoenixMajan.name }}
+          </h3>
+          <p class="text-brand-orange font-semibold text-sm uppercase tracking-wider mt-1">
+            {{ content.phoenixMajan.subtitle }}
+          </p>
+        </div>
+      </div>
+
+      <p class="text-navy-400 dark:text-gray-300 leading-relaxed mb-4 max-w-prose">
+        {{ content.phoenixMajan.description }}
+      </p>
+      <p class="text-sm font-medium text-navy-900 dark:text-white italic">
+        {{ content.phoenixMajan.location }}
+      </p>
+    </div>
+  </div>
+</section>

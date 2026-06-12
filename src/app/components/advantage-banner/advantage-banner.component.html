@@ -1,0 +1,22 @@
+<section class="relative section-padding bg-navy-900 overflow-hidden">
+  <img
+    src="/assets/images/world-map.svg"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none hidden sm:block"
+  />
+
+  <div class="container-max relative z-10">
+    <div appScrollAnimate class="text-center max-w-4xl mx-auto">
+      <p class="text-brand-orange font-heading font-bold uppercase tracking-[0.25em] text-xs sm:text-sm mb-4">
+        {{ content.advantageBanner.tagline }}
+      </p>
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold uppercase text-white leading-tight mb-6">
+        {{ content.advantageBanner.headline }}
+      </h2>
+      <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        {{ content.advantageBanner.subtext }}
+      </p>
+    </div>
+  </div>
+</section>

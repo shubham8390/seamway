@@ -1,0 +1,68 @@
+<section id="why-choose-us" class="section-padding bg-white dark:bg-navy-900 transition-colors duration-200">
+  <div class="container-max">
+    <div appScrollAnimate class="text-center mb-12 lg:mb-16">
+      <p class="section-subheading mb-2">Your Trusted Partner</p>
+      <h2 class="section-heading">{{ content.whyChoose.title }}</h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div appScrollAnimate>
+        <div class="p-6 sm:p-8 rounded-2xl bg-navy-900 text-white mb-8">
+          <h3 class="font-heading font-bold text-xl uppercase text-brand-orange mb-4">
+            {{ content.whyChoose.oneWindow.title }}
+          </h3>
+          <ul class="space-y-3">
+            @for (point of content.whyChoose.oneWindow.points; track point) {
+              <li class="flex items-center gap-3">
+                <svg class="w-5 h-5 text-brand-orange flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>{{ point }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          @for (benefit of content.whyChoose.benefits; track benefit) {
+            <div class="flex items-start gap-2 text-sm text-navy-400 dark:text-gray-300">
+              <svg class="w-4 h-4 mt-0.5 text-brand-orange flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+              {{ benefit }}
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3 gap-4">
+          @for (adv of content.whyChoose.advantages; track adv.title; let i = $index) {
+            <div
+              appScrollAnimate
+              [delay]="i * 100"
+              class="text-center p-5 rounded-xl border border-navy-100 dark:border-navy-700 bg-surface-light dark:bg-navy-800"
+            >
+              <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-brand-orange/10 flex items-center justify-center">
+                <span class="text-brand-orange font-bold">{{ i + 1 }}</span>
+              </div>
+              <h4 class="font-heading font-bold text-xs uppercase text-navy-900 dark:text-white mb-2">
+                {{ adv.title }}
+              </h4>
+              <p class="text-xs text-navy-400 dark:text-gray-400">{{ adv.description }}</p>
+            </div>
+          }
+        </div>
+
+        <div appScrollAnimate [delay]="300">
+          <img
+            src="/assets/images/logistics-team.jpg"
+            alt="Logistics professionals at work"
+            class="w-full h-48 sm:h-64 object-cover rounded-2xl shadow-lg"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

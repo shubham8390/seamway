@@ -1,0 +1,61 @@
+<section id="who-we-are" class="section-padding bg-white dark:bg-navy-900 transition-colors duration-200">
+  <div class="container-max">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div appScrollAnimate>
+        <p class="section-subheading mb-2">{{ content.tagline }}</p>
+        <h2 class="section-heading mb-6">{{ content.whoWeAre.title }}</h2>
+
+        @for (para of content.whoWeAre.paragraphs; track para) {
+          <p class="text-navy-400 dark:text-gray-300 leading-relaxed mb-4 max-w-prose">
+            {{ para }}
+          </p>
+        }
+
+        <p class="text-navy-900 dark:text-white font-semibold leading-relaxed mb-8 max-w-prose">
+          Our objective is simple:<br />
+          <span class="text-brand-orange">{{ content.whoWeAre.objective }}</span>
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          @for (value of content.whoWeAre.values; track value.title; let i = $index) {
+            <div
+              appScrollAnimate
+              [delay]="i * 100"
+              class="text-center p-6 sm:p-8 rounded-2xl bg-surface-light dark:bg-navy-800 border border-navy-100 dark:border-navy-700"
+            >
+              <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full bg-brand-orange flex items-center justify-center">
+                <span
+                  class="text-white font-extrabold text-xl sm:text-2xl tabular-nums"
+                  [appCountUp]="valueStats[i]"
+                  [countUpDuration]="1800 + i * 200"
+                >0+</span>
+              </div>
+              <h3 class="font-heading font-bold text-sm sm:text-base uppercase text-navy-900 dark:text-white mb-2 tracking-wide">
+                {{ value.title }}
+              </h3>
+              <p class="text-xs sm:text-sm text-navy-400 dark:text-gray-400 leading-relaxed">{{ value.description }}</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div appScrollAnimate [delay]="200" class="relative">
+        <img
+          src="/assets/images/port-operations.jpg"
+          alt="Port operations and cargo handling"
+          class="w-full h-64 sm:h-80 lg:h-[28rem] object-cover rounded-2xl shadow-xl"
+          loading="lazy"
+        />
+        <div class="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-brand-orange text-white p-4 sm:p-6 rounded-xl shadow-lg max-w-[200px]">
+          <p class="font-heading font-bold text-xs uppercase tracking-wider">Global Reach</p>
+          <p
+            class="text-2xl sm:text-3xl font-extrabold mt-1 tabular-nums"
+            [appCountUp]="globalReachStat"
+            [countUpDuration]="2200"
+          >0+</p>
+          <p class="text-xs opacity-90">Countries Served</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

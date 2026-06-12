@@ -1,0 +1,17 @@
+<section id="services" class="section-padding bg-surface-light dark:bg-navy-800/50 transition-colors duration-200">
+  <div class="container-max">
+    <div appScrollAnimate class="text-center mb-12 lg:mb-16">
+      <p class="section-subheading mb-2">What We Offer</p>
+      <h2 class="section-heading">OUR SERVICES</h2>
+      <p class="mt-4 text-navy-400 dark:text-gray-300 max-w-2xl mx-auto">
+        Comprehensive logistics solutions tailored to move your cargo efficiently across every mode of transport.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+      @for (service of content.services; track service.title; let i = $index) {
+        <app-service-card [service]="service" [index]="i" />
+      }
+    </div>
+  </div>
+</section>
